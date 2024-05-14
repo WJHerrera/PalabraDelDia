@@ -1,0 +1,38 @@
+{
+  "palabras": [
+    {
+      "id": 1,
+      "palabra": "colas"
+    },
+    {
+      "id": 2,
+      "palabra": "adios"
+    },
+    {
+      "id": 3,
+      "palabra": "casas"
+    },
+    {
+      "id": 4,
+      "palabra": "perros"
+    },
+    {
+      "id": 5,
+      "palabra": "gatos"
+    },
+    {
+      "id": 6,
+      "palabra": "yucas"
+    }
+  ],
+  "record": [
+    {
+      "id": 1,
+      "email": "marvinriascos01@gmail.com",
+      "time": 600
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

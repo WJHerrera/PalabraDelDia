@@ -1,0 +1,7 @@
+<!-- tablero.component.html -->
+<!-- <select [(ngModel)]="nivelDificultad" (change)="cambiarDificultad()">
+    <option *ngFor="let dificultad of dificultades" [value]="dificultad">{{ dificultad.nombre }}</option>
+  </select> -->
+  
+<app-palabra *ngFor="let item of iteracion; index as i" [palabra]="palabra" [cont]="i" [turno]="turno"></app-palabra>
+<button (click)="turno=turno+1">Enviar</button>
