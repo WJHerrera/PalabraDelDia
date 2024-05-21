@@ -1,7 +1,23 @@
-<!-- tablero.component.html -->
-<!-- <select [(ngModel)]="nivelDificultad" (change)="cambiarDificultad()">
-    <option *ngFor="let dificultad of dificultades" [value]="dificultad">{{ dificultad.nombre }}</option>
-  </select> -->
-  
+<!-- Niveles de Dificultad -->
+<button class="btn-difficulty" (click)="toggleDifficulty()">Niveles de Dificultad</button>
+<div *ngIf="showDifficultyOptions" class="difficulty-options">
+  <button class="btn-level" (click)="confirmDifficultyChange('facil')">Fácil (8 intentos)</button>
+  <button class="btn-level" (click)="confirmDifficultyChange('normal')">Normal (6 intentos)</button>
+  <button class="btn-level" (click)="confirmDifficultyChange('dificil')">Difícil (3 intentos)</button>
+</div>
+<div *ngIf="showConfirmation" class="confirmation">
+    <p>Estás seguro que quieres cambiar el nivel de dificultad, tus resultados se perderán.</p>
+    <button class="btn-level" (click)="setDifficulty(pendingDifficulty)">Sí</button>
+    <button class="btn-level" (click)="cancelDifficultyChange()">No</button>
+  </div>
+
 <app-palabra *ngFor="let item of iteracion; index as i" [palabra]="palabra" [cont]="i" [turno]="turno"></app-palabra>
-<button (click)="turno=turno+1">Enviar</button>
+<button class="btn-level" (click)="handleTurn()">Enviar</button>
+<button class="btn-level" (click)="reiniciarJuego()">Reiniciar</button>
+<button class="btn-level" (click)="iniciarCronometro()">Iniciar Cronómetro</button>
+  <span>{{ tiempo | date:'mm:ss' }}</span>
+
+<!-- Mostrar palabra correcta -->
+<div *ngIf="showCorrectWord" class="correct-word">
+  <p>La palabra correcta era: {{ palabra }}</p>
+</div>

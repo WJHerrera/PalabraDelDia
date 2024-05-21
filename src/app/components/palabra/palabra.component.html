@@ -1,12 +1,8 @@
-
 <div class="palabra">
-    <ng-container *ngIf="turno==cont">
-        <app-letra  *ngFor="let letra of letras" [letra]="letra"></app-letra>
-
-    </ng-container>
-    <ng-container *ngIf="turno!=cont">
-        <input *ngFor="let letra of letras" type="text" disabled/>
-    
-    </ng-container>    
+  <ng-container *ngIf="turno === cont">
+    <app-letra *ngFor="let letra of letras; let i = index" [letra]="letra" [palabra]="palabra" [(ngModel)]="ingresadas[i]" (ngModelChange)="onLetraChange($event, i)"></app-letra>
+  </ng-container>
+  <ng-container *ngIf="turno !== cont">
+    <input *ngFor="let letra of letras" type="text" [value]="ingresadas[letras.indexOf(letra)]" disabled />
+  </ng-container>
 </div>
-
