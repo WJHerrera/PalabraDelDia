@@ -8,6 +8,7 @@
           <th>Tiempo (s)</th>
           <th>Victorias</th>
           <th>Partidas Jugadas</th>
+          <th>Perdidas</th>
         </tr>
       </thead>
       <tbody>
@@ -16,6 +17,7 @@
           <td>{{ record.tiempo }}</td>
           <td>{{ record.victorias }}</td>
           <td>{{ record.partidasJugadas }}</td>
+          <td>{{ record.perdidas }}</td>
           <td><button (click)="eliminarRecord(record.id)">Eliminar</button></td>
         </tr>
       </tbody>

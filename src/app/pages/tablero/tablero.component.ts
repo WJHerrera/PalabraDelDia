@@ -19,8 +19,11 @@ export class TableroComponent implements OnInit {
   public Usuario: string = '';
   private intervalo: any;
   public iteracion: { letras: string[], clases: string[], showColors: boolean }[] = [];
-  public records: { id: string, nombre: string, tiempo: number, victorias: number, partidasJugadas: number }[] = [];
+  public records: { id: string, nombre: string, tiempo: number, victorias: number, partidasJugadas: number, perdidas: number }[] = [];
   public errorMensaje: string = '';
+  public victorias: number = 0;
+  public partidasJugadas: number = 0;
+  public perdidas: number = 0;
 
   constructor(
     private palabraSer: PalabraService,
@@ -73,6 +76,10 @@ export class TableroComponent implements OnInit {
 
     this.errorMensaje = '';
 
+    if (this.turno >= this.intentosNivel) {
+      this.detenerCronometro();
+      return;
+    }
     this.iteracion[this.turno].showColors = true;
     this.verificarVictoria();
 
@@ -80,7 +87,11 @@ export class TableroComponent implements OnInit {
       if (!this.iteracion[this.turno].clases.every(clase => clase === 'acierto')) {
         this.detenerCronometro();
         alert(`Has perdido, no tienes más intentos. La palabra era: ${this.palabra}`);
-        this.actualizarPartidasJugadas();
+        this.perdidas++;
+        this.partidasJugadas++;
+        this.recordService.addRecord({ nombre: this.Usuario, tiempo: this.tiempo, victorias: this.victorias, partidasJugadas: this.partidasJugadas, perdidas: this.perdidas }).subscribe(() => {
+          this.cargarRecords();
+        });
         this.reiniciarJuego();
       }
       return;
@@ -93,47 +104,15 @@ export class TableroComponent implements OnInit {
     const todasAciertos = this.iteracion[this.turno].clases.every(clase => clase === 'acierto');
     if (todasAciertos) {
       this.detenerCronometro();
-      const recordExistente = this.records.find(record => record.nombre === this.Usuario);
-      if (recordExistente) {
-        recordExistente.victorias++;
-        recordExistente.partidasJugadas++;
-        recordExistente.tiempo = this.tiempo;
-        this.recordService.updateRecord(recordExistente).subscribe(() => {
-          this.cargarRecords();
-        });
-      } else {
-        this.recordService.addRecord({
-          nombre: this.Usuario,
-          tiempo: this.tiempo,
-          victorias: 1,
-          partidasJugadas: 1
-        }).subscribe(() => {
-          this.cargarRecords();
-        });
-      }
+      this.victorias++;
+      this.partidasJugadas++;
+      this.recordService.addRecord({ nombre: this.Usuario, tiempo: this.tiempo, victorias: this.victorias, partidasJugadas: this.partidasJugadas, perdidas: this.perdidas }).subscribe(() => {
+        this.cargarRecords();
+      });
       setTimeout(() => {
         alert('¡Felicidades Has Acertado!');
         this.reiniciarJuego();
       }, 500);
-    }
-  }
-
-  actualizarPartidasJugadas(): void {
-    const recordExistente = this.records.find(record => record.nombre === this.Usuario);
-    if (recordExistente) {
-      recordExistente.partidasJugadas++;
-      this.recordService.updateRecord(recordExistente).subscribe(() => {
-        this.cargarRecords();
-      });
-    } else {
-      this.recordService.addRecord({
-        nombre: this.Usuario,
-        tiempo: this.tiempo,
-        victorias: 0,
-        partidasJugadas: 1
-      }).subscribe(() => {
-        this.cargarRecords();
-      });
     }
   }
 
@@ -178,7 +157,7 @@ export class TableroComponent implements OnInit {
   cargarRecords(): void {
     this.recordService.getRecords().subscribe((records: any[]) => {
       console.log('Records fetched:', records);  // Debugging
-      this.records = records;
+      this.records = records.sort((a, b) => a.tiempo - b.tiempo); // Ordenar registros por tiempo ascendente
     }, error => {
       console.error('Error fetching records:', error);  // Debugging
     });

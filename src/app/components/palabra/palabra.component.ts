@@ -1,3 +1,4 @@
+//palabra.component.ts
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({

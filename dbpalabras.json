@@ -25,28 +25,22 @@
       "palabra": "yucas"
     },
     {
-      "id": "7",
-      "palabra": "cebra"
+      "id": "6",
+      "palabra": "tigre"
     },
     {
-      "id": "8",
-      "palabra": "tigre"
+      "id": "6",
+      "palabra": "cebra"
     }
   ],
   "record": [
     {
-      "id": "e33c",
+      "id": "6660",
       "nombre": "wendy",
-      "tiempo": 17,
-      "victorias": 1,
-      "partidasJugadas": 1
-    },
-    {
-      "id": "4062",
-      "nombre": "julissa",
-      "tiempo": 12,
+      "tiempo": 5,
       "victorias": 2,
-      "partidasJugadas": 2
+      "partidasJugadas": 3,
+      "perdidas": 1
     }
   ],
   "profile": {
