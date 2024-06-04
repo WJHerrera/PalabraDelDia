@@ -1,0 +1,55 @@
+{
+  "palabras": [
+    {
+      "id": "1",
+      "palabra": "colas"
+    },
+    {
+      "id": "2",
+      "palabra": "adios"
+    },
+    {
+      "id": "3",
+      "palabra": "casas"
+    },
+    {
+      "id": "4",
+      "palabra": "perro"
+    },
+    {
+      "id": "5",
+      "palabra": "gatos"
+    },
+    {
+      "id": "6",
+      "palabra": "yucas"
+    },
+    {
+      "id": "7",
+      "palabra": "cebra"
+    },
+    {
+      "id": "8",
+      "palabra": "tigre"
+    }
+  ],
+  "record": [
+    {
+      "id": "e33c",
+      "nombre": "wendy",
+      "tiempo": 17,
+      "victorias": 1,
+      "partidasJugadas": 1
+    },
+    {
+      "id": "4062",
+      "nombre": "julissa",
+      "tiempo": 12,
+      "victorias": 2,
+      "partidasJugadas": 2
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

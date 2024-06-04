@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="left-content">
+    <h3>Tabla de Posiciones</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Tiempo (s)</th>
+          <th>Victorias</th>
+          <th>Partidas Jugadas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of records">
+          <td>{{ record.nombre }}</td>
+          <td>{{ record.tiempo }}</td>
+          <td>{{ record.victorias }}</td>
+          <td>{{ record.partidasJugadas }}</td>
+          <td><button (click)="eliminarRecord(record.id)">Eliminar</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="niveles-container" [class.active]="nivelesVisibles">
+    <button class="dropdown-button" (click)="toggleNiveles()">
+      Niveles de dificultad
+    </button>
+    <div class="niveles">
+      <button (click)="cambioDeNivel('facil')">Fácil</button>
+      <button (click)="cambioDeNivel('normal')">Normal</button>
+      <button (click)="cambioDeNivel('dificil')">Difícil</button>
+    </div>
+  </div>
+  <div class="content">
+    <div>Nivel: {{ nivel }} - Intentos: {{ intentosNivel }}</div>
+    <div>Tiempo: {{ tiempo }} segundos</div>
+    <button (click)="iniciarCronometro()">Iniciar</button>
+    <app-palabra *ngFor="let item of iteracion; index as i" [palabra]="palabra" [cont]="i" [turno]="turno" [letrasIngresadas]="item.letras" [clasesLetras]="item.clases" [showColors]="item.showColors" (Nuevaletra)="actualizarLetra($event)"></app-palabra>
+    <button (click)="avanzarTurno()">Enviar</button>
+    <button (click)="reiniciarJuego()">Reiniciar</button>
+  </div>
+</div>

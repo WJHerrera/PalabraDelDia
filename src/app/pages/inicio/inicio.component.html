@@ -1,0 +1,8 @@
+<div class="login-container">
+    <p>Ingrese su Nombre</p>
+    <input type="text" [(ngModel)]="nombre">
+    <button (click)="guardarNombre()">Jugar</button>
+    <p *ngIf="mostrarAdvertencia" class="warning">Si no ingresas tu nombre, tus resultados no se guardarán.</p>
+  </div>
+  
+  

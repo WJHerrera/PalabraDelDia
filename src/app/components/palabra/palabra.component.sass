@@ -1,0 +1,30 @@
+.palabra
+    display: flex
+    justify-content: center
+    align-items: center
+    font-size: 1.5rem
+    color: #333
+    margin: 1rem 0
+
+input
+    width: 1rem
+    height: 1rem
+    text-align: center
+    font-size: 1rem
+    font-weight: 600
+    text-transform: capitalize
+    border: 1px solid #0000FF
+    border-radius: 5px
+    margin: 0 0.5rem
+    padding: 0.5rem
+    outline: none
+    // transition: all: 0.3s
+input:disabled.acierto 
+  background-color: #43a047 !important
+  color: #fff
+input:disabled.absent 
+  background-color: #757575
+  color: #fff
+input:disabled.present 
+  background-color: #e4a81d !important
+  color: #fff
